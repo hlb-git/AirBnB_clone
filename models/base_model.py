@@ -43,6 +43,14 @@ class BaseModel:
         for attr, val in attr_dict.items():
             setattr(self, attr, val)
 
+    def save(self):
+        """
+            updates attribute updated_at to current time
+        """
+        self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
+
     def __str__(self):
         """
             returns string type representation of object instance
