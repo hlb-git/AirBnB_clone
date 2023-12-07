@@ -50,7 +50,6 @@ class BaseModel():
                     pass
                 else:
                     setattr(self, key, value)
-
     def save(self):
         """
             updates attribute updated_at to current time
