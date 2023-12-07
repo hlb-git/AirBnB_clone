@@ -20,7 +20,7 @@ class BaseModel():
             self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-        
+
 
     def __str__(self):
         """
@@ -44,19 +44,39 @@ class BaseModel():
         """
             private: converts attr_dict values to python class attributes
         """
+        date_format = '%Y-%m-%dT%H:%M:%S.%f'
         if 'id' not in attr_dict:
             attr_dict['id'] = str(uuid4())
-        if 'created_at' not in attr_dict:
-            attr_dict['created_at'] = datetime.utcnow()
-        elif not isinstance(attr_dict['created_at'], datetime):
-            attr_dict['created_at'] = datetime.strptime(
-                attr_dict['created_at'], "%Y-%m-%d %H:%M:%S.%f"
-            )
-        if 'updated_at' not in attr_dict:
-            attr_dict['updated_at'] = datetime.utcnow()
-        elif not isinstance(attr_dict['updated_at'], datetime):
-            attr_dict['updated_at'] = datetime.strptime(
-                attr_dict['updated_at'], "%Y-%m-%d %H:%M:%S.%f"
-            )
-        for attr, val in attr_dict.items():
-            setattr(self, attr, val)
+        for key, value in attr_dict.items():
+                if "created_at" == key:
+                    self.created_at = datetime.strptime(attr_dict["created_at"],
+                                                        date_format)
+                elif "updated_at" == key:
+                    self.updated_at = datetime.strptime(attr_dict["updated_at"],
+                                                        date_format)
+                elif "__class__" == key:
+                    pass
+                else:
+                    setattr(self, key, value)
+
+my_model = BaseModel()
+my_model.name = "My_First_Model"
+my_model.my_number = 89
+print(my_model.id)
+print(my_model)
+print(type(my_model.created_at))
+print("--")
+my_model_json = my_model.to_dict()
+print(my_model_json)
+print("JSON of my_model:")
+for key in my_model_json.keys():
+    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+
+print("--")
+my_new_model = BaseModel(**my_model_json)
+print(my_new_model.id)
+print(my_new_model)
+print(type(my_new_model.created_at))
+
+print("--")
+print(my_model is my_new_model)
