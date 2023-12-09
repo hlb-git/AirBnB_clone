@@ -3,10 +3,10 @@
 Place Class from Models Module
 """
 import os
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 
 
-class Place(BaseModel, Base):
+class Place(BaseModel):
     """Place class handles all application places"""
     city_id = ''
     user_id = ''

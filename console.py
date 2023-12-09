@@ -3,6 +3,7 @@
 Command interpreter for Alx AirBnB project
 """
 import cmd
+
 from models import storage, CNT
 
 
