@@ -3,7 +3,7 @@
 
 import os
 import json
-
+import models
 from uuid import uuid4
 from datetime import datetime
 
@@ -22,6 +22,8 @@ class BaseModel():
             self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        models.storage.new(self)
+
 
 
     def to_dict(self):
@@ -31,12 +33,6 @@ class BaseModel():
         instance_dict["updated_at"] = self.updated_at.isoformat()
         instance_dict["__class__"] = self.__class__.__name__
         return instance_dict
-
-    @staticmethod
-    def to_json(list_dictionaries):
-        if not list_dictionaries:
-            return "[]"
-        return json.dumps(list_dictionaries)
 
     def __set_attributes(self, attr_dict):
         """
@@ -61,7 +57,6 @@ class BaseModel():
             updates attribute updated_at to current time
         """
         self.updated_at = datetime.now()
-        models.storage.new(self)
         models.storage.save()
 
     def __str__(self):
