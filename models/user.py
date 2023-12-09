@@ -2,11 +2,11 @@
 """
 User Class from Models Module
 """
-from models.base_model import BaseModel, Base
+from models.base_model import BaseModel
 import os
 
 
-class User(BaseModel, Base):
+class User(BaseModel):
     """
     User Class handles all application users
     """
