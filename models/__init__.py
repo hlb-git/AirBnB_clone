@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from models.engine import file_storage
 
 """CNT - dictionary = { Class Name (string) : Class Type }"""
