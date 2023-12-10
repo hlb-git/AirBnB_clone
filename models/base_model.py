@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 """base class for all other subclasses"""
 
+<<<<<<< HEAD
+=======
+import os
+import json
+>>>>>>> main
 
 from uuid import uuid4
 from datetime import datetime
@@ -33,6 +38,12 @@ class BaseModel():
         instance_dict["updated_at"] = self.updated_at.isoformat()
         instance_dict["__class__"] = self.__class__.__name__
         return instance_dict
+
+    @staticmethod
+    def to_json(list_dictionaries):
+        if not list_dictionaries:
+            return "[]"
+        return json.dumps(list_dictionaries)
 
     def __set_attributes(self, attr_dict):
         """
