@@ -22,6 +22,8 @@ class BaseModel():
             self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        models.storage.new(self)
+
 
 
     def to_dict(self):
@@ -61,7 +63,6 @@ class BaseModel():
             updates attribute updated_at to current time
         """
         self.updated_at = datetime.now()
-        models.storage.new(self)
         models.storage.save()
 
     def __str__(self):
