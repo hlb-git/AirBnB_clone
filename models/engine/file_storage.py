@@ -7,7 +7,7 @@ from models import base_model, amenity, place, review, state, city, user
 from datetime import datetime
 
 strptime = datetime.strptime
-to_json = base_model.BaseModel.to_json
+
 
 
 class FileStorage:
@@ -27,7 +27,7 @@ class FileStorage:
     keys: Class Names
     values: Class type (used for instantiation)
     """
-    __file_path = './dev/file.json'
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self, cls=None):
@@ -57,8 +57,8 @@ class FileStorage:
         fname = FileStorage.__file_path
         storage_d = {}
         for bm_id, bm_obj in FileStorage.__objects.items():
-            storage_d[bm_id] = bm_obj.to_json(saving_file_storage=True)
-        with open(fname, mode='w', encoding='utf-8') as f_io:
+            storage_d[bm_id] = bm_obj.to_dict()
+        with open(fname, mode='w', encoding='UTF-8') as f_io:
             json.dump(storage_d, f_io)
 
     def reload(self):
