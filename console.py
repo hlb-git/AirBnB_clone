@@ -33,19 +33,19 @@ class HBNBCommand(cmd.Cmd):
         """
         handles intro to command interpreter
         """
-        print('.----------------------------.')
+        print('+----------------------------+')
         print('|    Welcome to hbnb CLI!    |')
         print('|   for help, input \'help\'   |')
         print('|   for quit, input \'quit\'   |')
-        print('.----------------------------.')
+        print('+----------------------------+')
 
     def postloop(self):
         """
         handles exit to command interpreter
         """
-        print('.----------------------------.')
+        print('+----------------------------+')
         print('|  Sure you enjoyed trying!  |')
-        print('.----------------------------.')
+        print('+----------------------------+')
 
     def default(self, line):
         """
@@ -108,13 +108,13 @@ class HBNBCommand(cmd.Cmd):
         arg = arg.split()
         error = self.__class_err(arg)
 
-    def LH_quit(self, line):
+    def do_quit(self, line):
         """quit: quit
         USAGE: Command to quit the program
         """
-        return True
+        exit()
 
-    def LH_EOF(self, line):
+    def do_EOF(self, line):
         """function to handle EOF"""
         print()
         return True
@@ -138,6 +138,24 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** Too many argument for create **")
             pass
+    def do_show(self, args):
+        """prints the the dict representation of the instance
+            example: ($ show BaseModel 1234-1234-1234)
+        """
+        if args:
+            args, length = parse(args)
+            if length < 2:
+                if length < 1:
+                    print("{}".format(HBNBCommand.ERR[0]))
+                elif length == 1:
+                    if args[0] not in classes:
+                        print("{}".format(HBNBCommand.ERR[1]))
+                        return
+                    print("** instance id missing **")
+            else:
+                all_objs = storage.all()
+                key = args[0] + '.' + args[1]
+                print(all_objs[key])
 
 def parse(line):
         """split the line arguments by spaces"""
