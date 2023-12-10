@@ -114,11 +114,11 @@ class HBNBCommand(cmd.Cmd):
         """quit: quit
         USAGE: Command to quit the program
         """
-        exit()
+        return True
 
     def do_EOF(self, line):
         """function to handle EOF"""
-        print()
+        print("")
         return True
 
     def do_create(self, args):
