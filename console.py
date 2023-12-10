@@ -31,23 +31,23 @@ class HBNBCommand(cmd.Cmd):
         '** value missing **',
         ]
 
-    def preloop(self):
-        """
-        handles intro to command interpreter
-        """
-        print('+----------------------------+')
-        print('|    Welcome to hbnb CLI!    |')
-        print('|   For help, input \'help\'   |')
-        print('|    To quit, input \'quit\'   |')
-        print('+----------------------------+')
+    # def preloop(self):
+    #     """
+    #     handles intro to command interpreter
+    #     """
+    #     print('+----------------------------+')
+    #     print('|    Welcome to hbnb CLI!    |')
+    #     print('|   For help, input \'help\'   |')
+    #     print('|    To quit, input \'quit\'   |')
+    #     print('+----------------------------+')
 
-    def postloop(self):
-        """
-        handles exit to command interpreter
-        """
-        print('+----------------------------+')
-        print('|  Sure you enjoyed trying!  |')
-        print('+----------------------------+')
+    # def postloop(self):
+    #     """
+    #     handles exit to command interpreter
+    #     """
+    #     print('+----------------------------+')
+    #     print('|  Sure you enjoyed trying!  |')
+    #     print('+----------------------------+')
 
     def default(self, line):
         """

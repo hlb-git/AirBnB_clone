@@ -3,12 +3,10 @@
 Handles I/O, writing and reading, of JSON for storage of all class instances
 """
 import json
-import os
 from models import base_model, amenity, place, review, state, city, user
 from datetime import datetime
 
 strptime = datetime.strptime
-
 
 
 class FileStorage:
@@ -71,7 +69,7 @@ class FileStorage:
         try:
             with open(fname, mode='r', encoding='utf-8') as f_io:
                 new_objs = json.load(f_io)
-        except:
+        except Exception:
             return
         for o_id, d in new_objs.items():
             k_cls = d['__class__']
@@ -95,7 +93,7 @@ class FileStorage:
         try:
             with open(FileStorage.__file_path, mode='w') as f_io:
                 pass
-        except:
+        except Exception:
             pass
         del FileStorage.__objects
         FileStorage.__objects = {}
