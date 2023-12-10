@@ -2,6 +2,7 @@
 """base class for all other subclasses"""
 
 import os
+import models
 import json
 
 from uuid import uuid4
@@ -63,6 +64,7 @@ class BaseModel():
             updates attribute updated_at to current time
         """
         self.updated_at = datetime.now()
+        models.storage.new(self)
         models.storage.save()
 
     def __str__(self):
