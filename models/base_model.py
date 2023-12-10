@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 """base class for all other subclasses"""
 
-<<<<<<< HEAD
-=======
-import os
-import json
->>>>>>> main
 
 from uuid import uuid4
 from datetime import datetime
@@ -29,8 +24,6 @@ class BaseModel():
         self.updated_at = datetime.now()
         models.storage.new(self)
 
-
-
     def to_dict(self):
         """returns the dictionary representation of the instance"""
         instance_dict = self.__dict__.copy()
@@ -39,11 +32,6 @@ class BaseModel():
         instance_dict["__class__"] = self.__class__.__name__
         return instance_dict
 
-    @staticmethod
-    def to_json(list_dictionaries):
-        if not list_dictionaries:
-            return "[]"
-        return json.dumps(list_dictionaries)
 
     def __set_attributes(self, attr_dict):
         """
@@ -76,14 +64,3 @@ class BaseModel():
         """
         class_name = type(self).__name__
         return '[{}] ({}) {}'.format(class_name, self.id, self.__dict__)
-my_model = BaseModel()
-my_model.name = "My First Model"
-my_model.my_number = 89
-print(my_model)
-my_model.save()
-print(my_model)
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
