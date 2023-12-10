@@ -3,6 +3,7 @@
 Handles I/O, writing and reading, of JSON for storage of all class instances
 """
 import json
+import os
 from models import base_model, amenity, place, review, state, city, user
 from datetime import datetime
 
