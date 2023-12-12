@@ -9,7 +9,6 @@ from uuid import uuid4
 from datetime import datetime
 
 
-
 class BaseModel():
     """
         attributes and functions for BaseModel class

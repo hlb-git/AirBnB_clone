@@ -247,7 +247,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj.__dict__[args[2]] = args[3]
 
-
     def do_all(self, arg):
         """all: all [ARG]
         ARG = Class
@@ -310,7 +309,7 @@ class HBNBCommand(cmd.Cmd):
         if '{' and '}' in arg:
             lent = arg.split('{')[1]
             lent = lent.split(', ')
-            lent = list(s.split(':') for s in l)
+            lent = list(s.split(':') for s in lent)
             d = {}
             for subl in lent:
                 k = subl[0].strip('"\' {}')
